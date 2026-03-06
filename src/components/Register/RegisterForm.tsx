@@ -47,13 +47,14 @@ export default function RegisterForm() {
         <FieldGroup
           containerClassName="flex flex-col gap-1 w-[90%]"
           labelClassName="font-semibold"
+          enablePasswordToggle
           labelText="Senha"
           name="password"
           type="password"
           placeholder="Ex: SenhaForte123!@#"
           autoComplete="off"
           required
-          className="p-2 rounded-lg border border-slate-300 focus:border-slate-500 focus:shadow-md focus:shadow-slate-300 outline-none"
+          className="w-full relative z-0 p-2 rounded-lg border border-slate-300 focus:border-slate-500 focus:shadow-md focus:shadow-slate-300 outline-none"
         />
         <FieldGroup
           containerClassName="flex flex-col gap-1 w-[90%]"

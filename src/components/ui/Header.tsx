@@ -1,7 +1,7 @@
-import Logo from "../ui/Logo";
+import Logo from "./Logo";
 
-interface LoginHeaderProps {
-  className?: string;
+interface HeaderProps {
+  containerClassName?: string;
   logoSrc: string;
   logoAlt: string;
   logoClassName?: string;
@@ -9,16 +9,16 @@ interface LoginHeaderProps {
   subtitle: string;
 }
 
-export default function LoginHeader({
-  className,
+export default function Header({
+  containerClassName,
   logoSrc,
   logoAlt,
   logoClassName,
   title,
   subtitle,
-}: LoginHeaderProps) {
+}: HeaderProps) {
   return (
-    <div className={className}>
+    <div className={containerClassName}>
       <Logo src={logoSrc} alt={logoAlt} className={logoClassName} />
       <h1 className="text-2xl text-slate-700 font-black">{title}</h1>
       <p className="text-xs text-slate-700 opacity-80">{subtitle}</p>

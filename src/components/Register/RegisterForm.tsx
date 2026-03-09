@@ -4,13 +4,31 @@ import Header from "../ui/Header";
 import FieldGroup from "../ui/FieldGroup";
 import Button from "../ui/Button";
 import Actions from "../ui/Actions";
+import { useRef, useState } from "react";
 
 export default function RegisterForm() {
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const passwordsMatch = password === confirmPassword;
+
+  function handleRegister() {
+    const name = nameRef.current?.value,
+      email = emailRef.current?.value;
+
+    if (!passwordsMatch) return;
+
+    console.log(name, email, password);
+    // TODO: implement api calls later...
+  }
+
   return (
     <div className="flex flex-col h-full w-full items-center justify-center">
       <Form
         action=""
-        method="post"
+        // TODO: uncomment later... method="post"
         name="login"
         className="flex flex-col items-center bg-white rounded-2xl border-slate-200 shadow-xl w-[30vw] h-[80vh] gap-4"
       >
@@ -23,6 +41,7 @@ export default function RegisterForm() {
           subtitle="Formulário de Cadastro"
         />
         <FieldGroup
+          nameRef={nameRef}
           containerClassName="flex flex-col gap-1 w-[90%]"
           labelClassName="font-semibold"
           labelText="Nome Completo"
@@ -34,6 +53,7 @@ export default function RegisterForm() {
           className="p-2 rounded-lg border border-slate-300 focus:border-slate-500 focus:shadow-md focus:shadow-slate-300 outline-none"
         />
         <FieldGroup
+          emailRef={emailRef}
           containerClassName="flex flex-col gap-1 w-[90%]"
           labelClassName="font-semibold"
           labelText="E-mail"
@@ -51,6 +71,8 @@ export default function RegisterForm() {
           labelText="Senha"
           name="password"
           type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="Ex: SenhaForte123!@#"
           autoComplete="off"
           required
@@ -62,7 +84,9 @@ export default function RegisterForm() {
           labelText="Confirmar Senha"
           name="confirm-password"
           type="password"
-          disabled
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          disabled={!password}
           autoComplete="off"
           required
           className="p-2 rounded-lg border border-slate-300 focus:border-slate-500 focus:shadow-md focus:shadow-slate-300 outline-none"
@@ -70,9 +94,7 @@ export default function RegisterForm() {
         <Button
           name="register"
           type="submit"
-          onClick={() => {
-            return;
-          }}
+          onClick={handleRegister}
           className="w-[90%] p-2 mt-4 bg-slate-600 rounded-xl cursor-pointer hover:bg-slate-700 text-white font-black"
         >
           Cadastrar

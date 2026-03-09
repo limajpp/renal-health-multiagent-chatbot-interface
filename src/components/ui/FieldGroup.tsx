@@ -1,11 +1,22 @@
 import { Eye, EyeOff } from "lucide-react";
-import { useState, type InputHTMLAttributes } from "react";
+import {
+  useState,
+  type Dispatch,
+  type InputHTMLAttributes,
+  type RefObject,
+  type SetStateAction,
+} from "react";
 
 interface FieldGroupProps extends InputHTMLAttributes<HTMLInputElement> {
   containerClassName?: string;
   labelClassName?: string;
   enablePasswordToggle?: boolean;
   labelText: string;
+  nameRef?: RefObject<HTMLInputElement | null>;
+  emailRef?: RefObject<HTMLInputElement | null>;
+  passwordRef?: RefObject<HTMLInputElement | null>;
+  passwordObject?: {};
+  setConfirmPasswordObject?: Dispatch<SetStateAction<{}>>;
 }
 
 export default function FieldGroup({
@@ -13,6 +24,11 @@ export default function FieldGroup({
   labelClassName,
   enablePasswordToggle,
   labelText,
+  nameRef,
+  emailRef,
+  passwordRef,
+  passwordObject,
+  setConfirmPasswordObject,
   ...inputProps
 }: FieldGroupProps) {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,6 +41,7 @@ export default function FieldGroup({
       {showToggle ? (
         <div className="relative flex items-center w-full">
           <input
+            ref={passwordRef}
             {...inputProps}
             type={showPassword ? "text" : "password"}
             className={inputProps.className}
@@ -38,7 +55,7 @@ export default function FieldGroup({
           </button>
         </div>
       ) : (
-        <input {...inputProps} />
+        <input ref={nameRef || emailRef} {...inputProps} />
       )}
     </div>
   );

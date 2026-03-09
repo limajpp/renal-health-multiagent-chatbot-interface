@@ -2,7 +2,8 @@ type FormMethod = "get" | "post" | "dialog";
 
 interface FormProps {
   action: string;
-  method: FormMethod;
+  // TODO: Make it mandatory later...
+  method?: FormMethod;
   name: string;
   className?: string;
   children: React.ReactNode;

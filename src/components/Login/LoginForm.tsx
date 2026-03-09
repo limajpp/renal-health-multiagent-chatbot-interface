@@ -4,13 +4,25 @@ import Header from "../ui/Header";
 import Button from "../ui/Button";
 import Actions from "../ui/Actions";
 import logo from "../../assets/renal-health-multiagent-chatbot-logo.png";
+import { useRef } from "react";
 
 export default function LoginForm() {
+  const emailRef = useRef<HTMLInputElement>(null),
+    passwordRef = useRef<HTMLInputElement>(null);
+
+  function handleLogin() {
+    const email = emailRef.current?.value,
+      password = passwordRef.current?.value;
+
+    console.log(email, password);
+    // TODO: implement api calls later...
+  }
+
   return (
     <div className="flex flex-col h-full w-full items-center justify-center">
       <Form
         action=""
-        method="post"
+        // TODO: uncomment later... method="post"
         name="login"
         className="flex flex-col items-center bg-white rounded-2xl border-slate-200 shadow-xl w-[30vw] h-[60vh] gap-4"
       >
@@ -23,6 +35,7 @@ export default function LoginForm() {
           subtitle="Formulário de Login"
         />
         <FieldGroup
+          emailRef={emailRef}
           containerClassName="flex flex-col gap-1 w-[90%]"
           labelClassName="font-semibold"
           labelText="E-mail"
@@ -34,6 +47,7 @@ export default function LoginForm() {
           className="p-2 rounded-lg border border-slate-300 focus:border-slate-500 focus:shadow-md focus:shadow-slate-300 outline-none"
         />
         <FieldGroup
+          passwordRef={passwordRef}
           containerClassName="flex flex-col gap-1 w-[90%]"
           labelClassName="font-semibold"
           enablePasswordToggle
@@ -48,9 +62,7 @@ export default function LoginForm() {
         <Button
           name="login"
           type="submit"
-          onClick={() => {
-            return;
-          }}
+          onClick={handleLogin}
           className="w-[90%] p-2 mt-4 bg-slate-600 rounded-xl cursor-pointer hover:bg-slate-700 text-white font-black"
         >
           Cadastrar

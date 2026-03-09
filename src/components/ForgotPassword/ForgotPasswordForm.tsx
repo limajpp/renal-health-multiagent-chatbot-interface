@@ -1,20 +1,18 @@
 import Form from "../ui/Form";
-import FieldGroup from "../ui/FieldGroup";
 import Header from "../ui/Header";
+import FieldGroup from "../ui/FieldGroup";
 import Button from "../ui/Button";
 import Actions from "../ui/Actions";
 import logo from "../../assets/renal-health-multiagent-chatbot-logo.png";
 import { useRef } from "react";
 
-export default function LoginForm() {
-  const emailRef = useRef<HTMLInputElement>(null),
-    passwordRef = useRef<HTMLInputElement>(null);
+export default function ForgotPasswordForm() {
+  const emailRef = useRef<HTMLInputElement>(null);
 
-  function handleLogin() {
-    const email = emailRef.current?.value,
-      password = passwordRef.current?.value;
+  function handleRecoverPassword() {
+    const email = emailRef.current?.value;
 
-    console.log(email, password);
+    console.log(email);
     // TODO: implement api calls later...
   }
 
@@ -24,15 +22,15 @@ export default function LoginForm() {
         action=""
         // TODO: uncomment later... method="post"
         name="login"
-        className="flex flex-col items-center bg-white rounded-2xl border-slate-200 shadow-xl w-[30vw] h-[60vh] gap-4"
+        className="flex flex-col items-center bg-white rounded-2xl border-slate-200 shadow-xl w-[30vw] h-[50vh] gap-4"
       >
         <Header
           containerClassName="flex flex-col items-center mt-2"
           logoSrc={logo}
           logoAlt="Kidney logo with digital circuit elements between two abstract human figures with speech bubbles, representing healthcare communication and technology."
           logoClassName="h-[15vh] w-[15vw]"
-          title="Renal Health Multiagent Chatbot"
-          subtitle="Formulário de Login"
+          title="Recuperar senha"
+          subtitle="Formulário de recuperação de senha"
         />
         <FieldGroup
           emailRef={emailRef}
@@ -46,34 +44,18 @@ export default function LoginForm() {
           required
           className="p-2 rounded-lg border border-slate-300 focus:border-slate-500 focus:shadow-md focus:shadow-slate-300 outline-none"
         />
-        <FieldGroup
-          passwordRef={passwordRef}
-          containerClassName="flex flex-col gap-1 w-[90%]"
-          labelClassName="font-semibold"
-          enablePasswordToggle
-          labelText="Senha"
-          name="password"
-          type="password"
-          placeholder="Ex: SenhaForte123!@#"
-          autoComplete="off"
-          required
-          className="w-full relative z-0 p-2 rounded-lg border border-slate-300 focus:border-slate-500 focus:shadow-md focus:shadow-slate-300 outline-none"
-        />
         <Button
           name="login"
           type="submit"
-          onClick={handleLogin}
+          onClick={handleRecoverPassword}
           className="w-[90%] p-2 mt-4 bg-slate-600 rounded-xl cursor-pointer hover:bg-slate-700 text-white font-black"
         >
-          Cadastrar
+          Enviar Link
         </Button>
         <Actions
-          containerClassName="flex flex-col items-center mt-4 gap-10 w-full"
-          mainText="Esqueceu a senha?"
-          mainHref="/forgotPassword"
-          subText="Não possui conta?"
-          subLinkText="Cadastre-se aqui!"
-          subHref="/register"
+          containerClassName="flex flex-col items-center mt-10 gap-10 w-full"
+          mainText="Clique aqui para voltar para o login!"
+          mainHref="/login"
         />
       </Form>
     </div>

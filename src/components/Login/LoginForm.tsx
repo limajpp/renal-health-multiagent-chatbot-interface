@@ -73,7 +73,7 @@ export default function LoginForm() {
           mainHref="#"
           subText="Não possui conta?"
           subLinkText="Cadastre-se aqui!"
-          subHref="#"
+          subHref="/register"
         />
       </Form>
     </div>

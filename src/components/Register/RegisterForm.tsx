@@ -101,9 +101,9 @@ export default function RegisterForm() {
         </Button>
         <Actions
           containerClassName="flex flex-col items-center mt-10 gap-10 w-full"
-          subText="Já possui conta?"
+          subText="Já possui uma conta?"
           subLinkText="Clique aqui!"
-          subHref="#"
+          subHref="/login"
         />
       </Form>
     </div>

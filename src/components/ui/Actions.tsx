@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface ActionProps {
   containerClassName?: string;
   mainText?: string;
@@ -19,16 +21,16 @@ export default function Actions({
     <div className={containerClassName}>
       <div className="flex flex-col items-center">
         {mainText && mainHref && (
-          <a className="font-black hover:underline" href={mainHref}>
+          <Link className="font-black hover:underline" to={mainHref}>
             {mainText}
-          </a>
+          </Link>
         )}
         {subText && subLinkText && subHref && (
           <p>
             {subText}{" "}
-            <a href={subHref} className="font-black hover:underline">
+            <Link to={subHref} className="font-black hover:underline">
               {subLinkText}
-            </a>
+            </Link>
           </p>
         )}
       </div>

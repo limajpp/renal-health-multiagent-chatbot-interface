@@ -1,4 +1,4 @@
-import Logo from "./Logo";
+import Image from "./Image";
 
 interface HeaderProps {
   containerClassName?: string;
@@ -19,7 +19,7 @@ export default function Header({
 }: HeaderProps) {
   return (
     <div className={containerClassName}>
-      <Logo src={logoSrc} alt={logoAlt} className={logoClassName} />
+      <Image src={logoSrc} alt={logoAlt} className={logoClassName} />
       <h1 className="text-2xl text-slate-700 font-black">{title}</h1>
       <p className="text-xs text-slate-700 opacity-80">{subtitle}</p>
     </div>

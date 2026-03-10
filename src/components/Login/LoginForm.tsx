@@ -34,7 +34,7 @@ export default function LoginForm() {
       if (userExists && !emptyFields) {
         setSignIn("success");
         setTimeout(() => {
-          navigate("/register");
+          navigate("/agentSelection");
         }, 1500);
         return;
       }

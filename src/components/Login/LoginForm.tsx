@@ -5,18 +5,61 @@ import Button from "../ui/Button";
 import Actions from "../ui/Actions";
 import logo from "../../assets/renal-health-multiagent-chatbot-logo.png";
 import { useRef } from "react";
+import users from "../../mocks/userMock";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
+  const navigate = useNavigate();
+  const [signIn, setSignIn] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const emailRef = useRef<HTMLInputElement>(null),
     passwordRef = useRef<HTMLInputElement>(null);
 
-  function handleLogin() {
-    const email = emailRef.current?.value,
-      password = passwordRef.current?.value;
+  function handleLogin(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
 
-    console.log(email, password);
+    setSignIn("loading");
+
+    setTimeout(() => {
+      const email = emailRef.current?.value,
+        password = passwordRef.current?.value;
+      const emptyFields = email?.trim() === "" && password?.trim() === "";
+      const userExists =
+        (email === users[0].email && password === users[0].password) ||
+        (email === users[1].email && password === users[1].password) ||
+        (email === users[2].email && password === users[2].password);
+
+      if (userExists && !emptyFields) {
+        setSignIn("success");
+        setTimeout(() => {
+          navigate("/register");
+        }, 1500);
+        return;
+      }
+      if (!userExists && !emptyFields) {
+        setSignIn("error");
+        return;
+      }
+    }, 3000);
+
     // TODO: implement api calls later...
   }
+
+  let signInMessage;
+  if (signIn === "success")
+    signInMessage = (
+      <p className="font-black text-green-500 text-center">
+        User authorized! Logging in...
+      </p>
+    );
+  if (signIn === "error")
+    signInMessage = (
+      <p className="font-black text-red-500 text-center">
+        Invalid credentials... Please try again!
+      </p>
+    );
 
   return (
     <div className="flex flex-col h-full w-full items-center justify-center">
@@ -24,7 +67,7 @@ export default function LoginForm() {
         action=""
         // TODO: uncomment later... method="post"
         name="login"
-        className="flex flex-col items-center bg-white rounded-2xl border-slate-200 shadow-xl w-[30vw] h-[60vh] gap-4"
+        className="flex flex-col items-center bg-white rounded-2xl border-slate-200 shadow-xl w-[30vw] h-[65vh] gap-4"
       >
         <Header
           containerClassName="flex flex-col items-center mt-2"
@@ -62,11 +105,12 @@ export default function LoginForm() {
         <Button
           name="login"
           type="submit"
-          onClick={handleLogin}
+          onClick={(event) => handleLogin(event)}
           className="w-[90%] p-2 mt-4 bg-slate-600 rounded-xl cursor-pointer hover:bg-slate-700 text-white font-black"
         >
-          Cadastrar
+          Entrar
         </Button>
+        {signInMessage}
         <Actions
           containerClassName="flex flex-col items-center mt-4 gap-10 w-full"
           mainText="Esqueceu a senha?"

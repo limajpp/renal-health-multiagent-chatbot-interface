@@ -8,8 +8,11 @@ import { useRef } from "react";
 import users from "../../mocks/userMock";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../store/AuthContext";
 
 export default function LoginForm() {
+  const { login } = useAuth();
+
   const navigate = useNavigate();
   const [signIn, setSignIn] = useState<
     "idle" | "loading" | "success" | "error"
@@ -31,10 +34,13 @@ export default function LoginForm() {
         (email === users[1].email && password === users[1].password) ||
         (email === users[2].email && password === users[2].password);
 
+      const userName = users.find((u) => u.email === email)?.name;
+      if (userName) login(userName);
+
       if (userExists && !emptyFields) {
         setSignIn("success");
         setTimeout(() => {
-          navigate("/agentSelection");
+          navigate("/agent-selection");
         }, 1500);
         return;
       }
@@ -114,7 +120,7 @@ export default function LoginForm() {
         <Actions
           containerClassName="flex flex-col items-center mt-4 gap-10 w-full"
           mainText="Esqueceu a senha?"
-          mainHref="/forgotPassword"
+          mainHref="/forgot-password"
           subText="Não possui conta?"
           subLinkText="Cadastre-se aqui!"
           subHref="/register"

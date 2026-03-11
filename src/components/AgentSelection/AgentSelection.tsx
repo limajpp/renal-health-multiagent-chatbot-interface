@@ -1,7 +1,6 @@
 import Navbar from "../ui/Navbar";
 import Image from "../ui/Image";
 import profilePic from "../../assets/default-profile-picture.png";
-import logo from "../../assets/renal-health-multiagent-chatbot-logo.png";
 import hemoAgentPic from "../../assets/hemodialysis-agent-picture.png";
 import dialAgentPic from "../../assets/dialysis-agent-picture.png";
 import Card from "../ui/Card";
@@ -9,9 +8,16 @@ import Button from "../ui/Button";
 import AgentSelectionRadioCard from "./AgentSelectionRadioCard";
 import { useNavigate } from "react-router-dom";
 import { useState, type MouseEvent } from "react";
+import { useAuth } from "../../store/AuthContext";
 
 export default function AgentSelection() {
+  const { userName, logout } = useAuth();
   const navigate = useNavigate();
+
+  function handleLogout() {
+    logout();
+    navigate("/login");
+  }
   const [agent, setAgent] = useState<"unselected" | "hemo" | "dial">(
     "unselected",
   );
@@ -40,18 +46,21 @@ export default function AgentSelection() {
               <div className="leading-tight">
                 {/* TODO: Change to actual user name later... */}
                 <h1 className="text-sm font-semibold text-slate-800 md:text-base">
-                  Cláudio Bezerra
+                  {userName}
                 </h1>
                 <p className="text-xs text-slate-500">Sessão ativa</p>
               </div>
             </div>
           </li>
           <li>
-            <Image
-              className="h-10 w-auto object-contain md:h-12"
-              src={logo}
-              alt="Renal Health Multiagent Chatbot logo"
-            />
+            <Button
+              name="logout"
+              type="button"
+              onClick={handleLogout}
+              className="bg-blue-100 rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 cursor-pointer hover:bg-blue-200 hover:text-slate-800 transition-colors"
+            >
+              Sair
+            </Button>
           </li>
         </ul>
       </Navbar>

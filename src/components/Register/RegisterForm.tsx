@@ -30,13 +30,13 @@ export default function RegisterForm() {
         action=""
         // TODO: uncomment later... method="post"
         name="login"
-        className="flex flex-col items-center bg-white rounded-2xl border-slate-200 shadow-xl w-[30vw] h-[80vh] gap-4"
+        className="flex flex-col items-center bg-white rounded-2xl border-slate-200 shadow-xl w-[30vw] h-fit p-4 gap-4"
       >
         <Header
           containerClassName="flex flex-col items-center mt-2"
           logoSrc={logo}
           logoAlt="Kidney logo with digital circuit elements between two abstract human figures with speech bubbles, representing healthcare communication and technology."
-          logoClassName="h-[15vh] w-[15vw]"
+          logoClassName="h-16 w-auto object-contain"
           title="Criar Nova Conta"
           subtitle="Formulário de Cadastro"
         />
@@ -100,7 +100,7 @@ export default function RegisterForm() {
           Cadastrar
         </Button>
         <Actions
-          containerClassName="flex flex-col items-center mt-10 gap-10 w-full"
+          containerClassName="flex flex-col items-center gap-10 w-full"
           subText="Já possui uma conta?"
           subLinkText="Clique aqui!"
           subHref="/login"

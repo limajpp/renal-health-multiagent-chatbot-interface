@@ -9,7 +9,7 @@ import AgentSelectionRadioCard from "./AgentSelectionRadioCard";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState, type MouseEvent } from "react";
 import { useAuth } from "../../store/AuthContext";
-import Dialog, { type DialogHandle } from "../Dialog";
+import Dialog, { type DialogHandle } from "../ui/Dialog";
 
 export default function AgentSelection() {
   const { userName, logout } = useAuth();
@@ -43,9 +43,9 @@ export default function AgentSelection() {
       <Navbar className="mx-auto w-full max-w-6xl rounded-2xl border border-slate-200 bg-white/90 shadow-lg backdrop-blur">
         <ul className="flex w-full items-center justify-between px-4 py-3 md:px-6 md:py-4">
           <li>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center">
               <Image
-                className="h-10 w-10 rounded-full object-cover ring-2 ring-slate-200 md:h-12 md:w-12"
+                className="h-12 w-auto object-contain"
                 src={profilePic}
                 alt="User profile silhouette inside a circular badge with abstract network nodes and data filtering icons in the background, suggesting an AI or data-processing agent."
               />

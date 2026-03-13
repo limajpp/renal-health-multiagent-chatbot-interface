@@ -1,5 +1,5 @@
 import { useImperativeHandle, useRef, type Ref, type ReactNode } from "react";
-import Portal from "./Portal";
+import Portal from "../Portal";
 
 interface DialogProps {
   ref: Ref<DialogHandle> | undefined;

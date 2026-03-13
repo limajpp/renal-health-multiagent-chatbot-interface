@@ -5,6 +5,7 @@ import ForgotPassword from "./components/ForgotPassword/ForgotPasswordForm.tsx";
 import AgentSelection from "./components/AgentSelection/AgentSelection.tsx";
 import { AuthProvider } from "./store/AuthContext.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import Chatbot from "./components/Chatbot/Chatbot.tsx";
 
 function App() {
   return (
@@ -16,8 +17,8 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/agent-selection" element={<AgentSelection />} />
-          <Route path="/hemo-chatbot" element={null} />
-          <Route path="/dial-chatbot" element={null} />
+          <Route path="/hemo-chatbot" element={<Chatbot agentType="hemo" />} />
+          <Route path="/dial-chatbot" element={<Chatbot agentType="dial" />} />
         </Route>
       </Routes>
     </AuthProvider>

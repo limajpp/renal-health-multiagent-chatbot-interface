@@ -12,7 +12,6 @@ import { useAuth } from "../../store/AuthContext";
 
 export default function LoginForm() {
   const { login } = useAuth();
-
   const navigate = useNavigate();
   const [signIn, setSignIn] = useState<
     "idle" | "loading" | "success" | "error"
@@ -73,13 +72,13 @@ export default function LoginForm() {
         action=""
         // TODO: uncomment later... method="post"
         name="login"
-        className="flex flex-col items-center bg-white rounded-2xl border-slate-200 shadow-xl w-[30vw] h-[65vh] gap-4"
+        className="flex flex-col items-center bg-white rounded-2xl border-slate-200 shadow-xl w-[30vw] p-4 h-fit gap-4"
       >
         <Header
           containerClassName="flex flex-col items-center mt-2"
           logoSrc={logo}
           logoAlt="Kidney logo with digital circuit elements between two abstract human figures with speech bubbles, representing healthcare communication and technology."
-          logoClassName="h-[15vh] w-[15vw]"
+          logoClassName="h-16 w-auto object-contain"
           title="Renal Health Multiagent Chatbot"
           subtitle="Formulário de Login"
         />
